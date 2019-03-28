@@ -1,0 +1,34 @@
+---
+dcos:
+  download: "https://downloads.dcos.io/dcos/stable/1.12.3/dcos_generate_config.sh"
+  version: "1.12.3"
+  # image_commit: "acc9fe548aea5b1b5b5858a4b9d2c96e07eeb9de"
+  enterprise_dcos: false
+
+  #selinux_mode: permissive
+  selinux_mode: enforcing
+
+  config:
+    # This is a direct yaml representation of the DC/OS config.yaml
+    # Please see https://docs.mesosphere.com/1.12/installing/production/advanced-configuration/configuration-reference/
+    # for parameter reference.
+    cluster_name: "mesosjlu"
+    security: strict
+    bootstrap_url: http://172.16.10.36:8080
+    exhibitor_storage_backend: static
+    master_discovery: static
+    master_list:
+      - 172.16.10.35
+      - 172.16.10.50
+      - 172.16.10.59
+    dns_search: openstacklocal novalocal
+    dns_forward_zones:
+      openstacklocal:
+        - "192.168.1.1:53"
+      novalocal:
+        - "192.168.1.1:53"
+    resolvers:
+      - 192.168.1.1
+      - 8.8.4.4
+      - 8.8.8.8
+      
